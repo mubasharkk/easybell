@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Services\PhotoGalleryService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -11,11 +12,12 @@ class PhotosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PhotoGalleryService $service)
     {
-        return Inertia::render('Photos/Gallery', [
-            'photos' => ['test', 'data'],
-        ]);
+        return $service->getPhotos();
+//        return Inertia::render('Photos/Gallery', [
+//            'photos' => $service->getPhotos(),
+//        ]);
     }
 
     /**
