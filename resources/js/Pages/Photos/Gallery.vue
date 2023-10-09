@@ -1,5 +1,4 @@
 <script setup>
-import GuestLayout from "@/Layouts/GuestLayout";
 import { Head } from '@inertiajs/vue3';
 
 defineProps({
@@ -13,8 +12,4 @@ defineProps({
 <template>
 
     <Head title="Gallery" />
-
-    <GuestLayout>
-        {{photos}}
-    </GuestLayout>
 </template>

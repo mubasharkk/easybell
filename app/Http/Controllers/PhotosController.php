@@ -14,10 +14,9 @@ class PhotosController extends Controller
      */
     public function index(PhotoGalleryService $service)
     {
-        return $service->getPhotos();
-//        return Inertia::render('Photos/Gallery', [
-//            'photos' => $service->getPhotos(),
-//        ]);
+        return Inertia::render('Photos/Gallery', [
+            'photos' => $service->getPhotos(),
+        ]);
     }
 
     /**
