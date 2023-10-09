@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('albums', function (Blueprint $table) {
-            $table->uuid()->primary();
+            $table->uuid('id')->primary();
             $table->unsignedBigInteger('user_id')->references('id')->on('users');
             $table->string('title');
             $table->unsignedBigInteger('reference_id')->unique();
