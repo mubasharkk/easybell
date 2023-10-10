@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->uuid('album_id')->references('id')->on('albums');
+            $table->bigInteger('fav_count')->default(0);
             $table->string('url', 2084);
             $table->timestamps();
         });

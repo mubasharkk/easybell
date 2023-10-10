@@ -12,9 +12,9 @@ class Album extends Model
 
     protected $keyType = 'string';
 
-    public function album()
+    public function photos()
     {
-        return $this->hasOne(Album::class);
+        return $this->hasMany(Photo::class);
     }
 
     public function user()

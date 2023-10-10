@@ -1,8 +1,9 @@
 <script setup>
+import { Head } from '@inertiajs/vue3';
+import {onMounted, ref} from 'vue'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 import Pagination from "@/Components/Pagination.vue";
-import {onMounted, ref} from 'vue'
-import { Head } from '@inertiajs/vue3';
+import FavoriteButton from "@/Components/FavoriteButton.vue";
 
 const photos = ref({});
 const pageMeta = ref({});
@@ -45,11 +46,8 @@ onMounted(() => {
                     @error="photo.url = 'https://picsum.photos/id/26/600/600'"
                     class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
                 />
-                <div
-                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
-                        Like
-                    </button>
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <FavoriteButton :isFavorited="false"/>
                 </div>
             </div>
         </div>

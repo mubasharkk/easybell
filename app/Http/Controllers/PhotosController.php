@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Domain\Services\PhotoGalleryService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Inertia\Inertia;
+use Ramsey\Uuid\Uuid;
 
 class PhotosController extends Controller
 {
@@ -19,54 +21,21 @@ class PhotosController extends Controller
      */
     public function index(PhotoGalleryService $service, Request $request)
     {
-        return $service->getPhotos();
+        return $service->getPhotos(
+            $request->get('favorites', false)
+        );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    public function markFavorites(
+        string              $photoId,
+        Request             $request,
+        PhotoGalleryService $service
+    ) {
+        $service->toggleFavorites(
+            Uuid::fromString($photoId),
+            1
+        );
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response(Response::HTTP_OK);
     }
 }
