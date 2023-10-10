@@ -13,6 +13,13 @@ class Photo extends Model
 
     protected $keyType = 'string';
 
+    protected $fillable = [
+        'id',
+        'title',
+        'album_id',
+        'fav_count'
+    ];
+
     public function album(): BelongsTo
     {
         return $this->belongsTo(Album::class);

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Services\PhotoGalleryService;
+use App\Http\Resources\PhotoResource;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Inertia\Inertia;
 use Ramsey\Uuid\Uuid;
 
@@ -31,11 +31,11 @@ class PhotosController extends Controller
         Request             $request,
         PhotoGalleryService $service
     ) {
-        $service->toggleFavorites(
-            Uuid::fromString($photoId),
-            1
-        );
+        $photoId = Uuid::fromString($photoId);
+        $service->toggleFavorites($photoId, 1);
 
-        return response(Response::HTTP_OK);
+        return response(
+            new PhotoResource($service->findPhoto($photoId))
+        );
     }
 }

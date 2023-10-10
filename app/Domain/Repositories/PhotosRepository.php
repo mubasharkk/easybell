@@ -4,8 +4,9 @@ namespace App\Domain\Repositories;
 
 use App\Models\Favorites;
 use App\Models\Photo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class PhotosRepository
 {
@@ -22,7 +23,7 @@ class PhotosRepository
             ->paginate();
     }
 
-    public function findFavorite(Uuid $photoId, int $userId): Favorites
+    public function findFavorite(UuidInterface $photoId, int $userId): Builder
     {
         return Favorites::where([
             'photo_id' => $photoId,
@@ -30,7 +31,7 @@ class PhotosRepository
         ]);
     }
 
-    public function addFavorite(Uuid $photoId, int $userId): bool
+    public function addFavorite(UuidInterface $photoId, int $userId): bool
     {
         return (new Favorites([
             'photo_id' => $photoId,
@@ -38,8 +39,14 @@ class PhotosRepository
         ]))->save();
     }
 
-    public function removeFavorite(Uuid $photoId, int $userId): bool
+    public function removeFavorite(UuidInterface $photoId, int $userId): bool
     {
+        Photo::find($photoId)->decrement('fav_count'); // need to fix this in observer
         return $this->findFavorite($photoId, $userId)->delete();
+    }
+
+    public function find(UuidInterface $photoId)
+    {
+        return Photo::find($photoId);
     }
 }

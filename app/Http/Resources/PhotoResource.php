@@ -15,6 +15,7 @@ class PhotoResource extends JsonResource
             'title'      => $this->title,
             'url'        => $this->url,
             'album'      => new AlbumResource($this->album),
+            'fav_count'  => $this->fav_count,
             'created_at' => $this->created_at,
         ];
     }

@@ -4,7 +4,7 @@ namespace App\Domain\Services;
 
 use App\Domain\Repositories\PhotosRepository;
 use App\Http\Resources\PhotoResource;
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class PhotoGalleryService
 {
@@ -22,12 +22,17 @@ class PhotoGalleryService
         return PhotoResource::collection($photos);
     }
 
-    public function toggleFavorites(Uuid $photoId, int $userId): bool
+    public function toggleFavorites(UuidInterface $photoId, int $userId): bool
     {
         if ($this->photosRepo->findFavorite($photoId, $userId)->exists()) {
             return $this->photosRepo->removeFavorite($photoId, $userId);
         }
 
         return $this->photosRepo->addFavorite($photoId, $userId);
+    }
+
+    public function findPhoto(UuidInterface $photoId)
+    {
+        return $this->photosRepo->find($photoId)->first();
     }
 }

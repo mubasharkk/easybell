@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorites extends Model
 {
+
     use HasFactory;
+
+    protected $fillable = [
+        'photo_id',
+        'user_id',
+    ];
 }

@@ -25,7 +25,7 @@ function getPage(pageUrl) {
 }
 
 onMounted(() => {
-    getPage(route('photos.index') + '?page=1');
+    getPage(route('photos.gallery') + '?page=1');
 })
 
 </script>

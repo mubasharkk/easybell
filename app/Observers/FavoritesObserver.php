@@ -13,7 +13,7 @@ class FavoritesObserver
      */
     public function created(Favorites $favorites): void
     {
-        Photo::where('id', $favorites->photo_id)->increment('fav_count');
+        Photo::find($favorites->photo_id)->increment('fav_count');
     }
 
     /**
@@ -21,6 +21,6 @@ class FavoritesObserver
      */
     public function deleted(Favorites $favorites): void
     {
-        Photo::where('id', $favorites->photo_id)->decrement('fav_count');
+        Photo::find($favorites->photo_id)->decrement('fav_count');
     }
 }
