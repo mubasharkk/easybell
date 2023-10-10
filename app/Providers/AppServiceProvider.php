@@ -22,8 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        UserResource::withoutWrapping();
-        AlbumResource::withoutWrapping();
-        PhotoResource::withoutWrapping();
+//        UserResource::withoutWrapping();
+//        AlbumResource::withoutWrapping();
+//        PhotoResource::withoutWrapping();
     }
 }

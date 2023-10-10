@@ -12,9 +12,10 @@ class PhotoGalleryService
     {
     }
 
-    public function getPhotos(int $limit = 15, bool $onlyFavorites = false)
+    public function getPhotos(bool $onlyFavorites = false)
     {
-        $photos = $this->photosRepo->getList($limit);
-        return PhotoResource::collection($photos);
+        return PhotoResource::collection(
+            $this->photosRepo->getAll()
+        );
     }
 }

@@ -9,14 +9,17 @@ use Inertia\Inertia;
 class PhotosController extends Controller
 {
 
+    public function displayGallery()
+    {
+        return Inertia::render('Photos/Gallery');
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index(PhotoGalleryService $service)
+    public function index(PhotoGalleryService $service, Request $request)
     {
-        return Inertia::render('Photos/Gallery', [
-            'photos' => $service->getPhotos(),
-        ]);
+        return $service->getPhotos();
     }
 
     /**

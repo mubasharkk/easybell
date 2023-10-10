@@ -25,15 +25,19 @@ class PhotoSeeder extends Seeder
 
         $rows = [];
 
+        $id = 1;
         foreach ($data as $photo) {
+            $id = $id > 1000 ? 1 : $id;
+
             $rows[] = [
                 'id'         => Uuid::uuid4(),
                 'title'      => $photo['title'],
                 'album_id'   => $albums->get($photo['albumId'])->id,
-                'url'        => $photo['url'],
+                'url'        => "https://picsum.photos/id/$id/600/600",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
+            $id++;
         }
 
         Photo::insert($rows);

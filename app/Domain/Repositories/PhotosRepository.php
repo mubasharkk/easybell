@@ -3,12 +3,17 @@
 namespace App\Domain\Repositories;
 
 use App\Models\Photo;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PhotosRepository
 {
-    public function getList(int $limit, int $page = 1): Collection
+    public function getAll(): LengthAwarePaginator
     {
-        return Photo::limit($limit)->get();
+        return Photo::paginate();
+    }
+
+    public function getFavorites()
+    {
+        return Photo::paginate();
     }
 }

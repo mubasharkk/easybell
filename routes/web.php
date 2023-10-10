@@ -16,7 +16,9 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [PhotosController::class, 'index']);
+Route::get('/', [PhotosController::class, 'displayGallery']);
+
+Route::resource('/photos', PhotosController::class)->only(['index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
