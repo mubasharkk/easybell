@@ -13,14 +13,14 @@ class Photo extends Model
     use HasFactory;
 
     protected $keyType = 'string';
+    public $incrementing = false;
 
-    protected $fillable
-        = [
-            'id',
-            'title',
-            'album_id',
-            'fav_count',
-        ];
+    protected $fillable = [
+        'id',
+        'title',
+        'album_id',
+        'fav_count',
+    ];
 
     public function album(): BelongsTo
     {
