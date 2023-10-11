@@ -19,7 +19,9 @@ use Inertia\Inertia;
 Route::get('/', [PhotosController::class, 'displayGallery']);
 
 Route::get('/photos', [PhotosController::class, 'index'])->name('photos.gallery');
-Route::get('/photo/{id}/favorite', [PhotosController::class, 'markFavorites'])->name('photos.favorite');
+Route::get('/photo/{id}/favorite', [PhotosController::class, 'markFavorites'])
+    ->name('photos.favorite')
+    ->middleware('auth');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
