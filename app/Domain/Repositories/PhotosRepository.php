@@ -13,7 +13,7 @@ class PhotosRepository
 
     public function getAll(): LengthAwarePaginator
     {
-        return Photo::orderBy('created_at', 'desc')->paginate();
+        return Photo::orderBy('fav_count', 'desc')->paginate();
     }
 
     public function getFavorites(): LengthAwarePaginator

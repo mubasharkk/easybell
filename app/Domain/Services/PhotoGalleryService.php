@@ -4,6 +4,7 @@ namespace App\Domain\Services;
 
 use App\Domain\Repositories\PhotosRepository;
 use App\Http\Resources\PhotoResource;
+use App\Models\Photo;
 use Ramsey\Uuid\UuidInterface;
 
 class PhotoGalleryService
@@ -31,8 +32,8 @@ class PhotoGalleryService
         return $this->photosRepo->addFavorite($photoId, $userId);
     }
 
-    public function findPhoto(UuidInterface $photoId)
+    public function findPhoto(UuidInterface $photoId): Photo
     {
-        return $this->photosRepo->find($photoId)->first();
+        return $this->photosRepo->find($photoId);
     }
 }

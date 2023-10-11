@@ -2,7 +2,7 @@
 
 defineProps({
     pageMeta: {
-        type: Array,
+        type: Object,
         required: true
     },
     onPageChange: {
