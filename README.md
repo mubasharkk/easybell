@@ -25,3 +25,48 @@ You may also create tests, use design patterns and anything you believe will enr
 showcase.
 
 Please commit the code to GitHub and send the repository link to us.
+
+
+# Solution
+
+* **Backend**
+  * All relevant files are in following folders
+    * [Domain](https://github.com/mubasharkk/easybell/tree/main/app/Domain)
+    * [PhotosController](https://github.com/mubasharkk/easybell/blob/main/app/Http/Controllers/PhotosController.php)
+    * [Models](https://github.com/mubasharkk/easybell/tree/main/app/Models)
+    * Other than these files nothing is touched. 
+    * I decided to store the data from API to database to show my expertise on databases.
+    * I have added one single `Feature/PhotosControllerTest`. Because of time I wasn't able to add some extra tests.
+* **Frontend**
+  * Frontend is build with VueJS and has default setup from Laravel Breeze with VueJs.
+  * No extra plugin/libraries are used.
+  * All relevant files are in 
+    * [resources/js/Pages](https://github.com/mubasharkk/easybell/tree/main/resources/js/Pages)
+    * [resources/js/Components](https://github.com/mubasharkk/easybell/tree/main/resources/js/Components)
+
+### Running the app
+
+The application is built on Laravel using Sail.
+
+```
+$ composer install && ./vendor/bin/sail up -d
+```
+
+### APP URL
+
+`http://localhost/`
+
+### Importing data from Placeholder API
+
+I have mixed the `JsonPlaceHolder` API data with [https://picsum.photos/](https://picsum.photos/) API to have nicer looking photos.
+
+### Importing Data
+```
+$ ./vendor/bin/sail artisan migrate --seed
+```
+
+### Running Test
+
+```
+sail artisan test tests/Feature/PhotosControllerTest.php
+```
