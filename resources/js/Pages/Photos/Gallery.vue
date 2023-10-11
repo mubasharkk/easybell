@@ -9,6 +9,7 @@ import Checkbox from "@/Components/Checkbox.vue";
 const photos = ref({});
 const pageMeta = ref({});
 const isLoading = ref(true);
+const displayFavs = ref(false);
 
 function getPage(pageUrl) {
     photos.value = {};
@@ -25,10 +26,8 @@ function getPage(pageUrl) {
         });
 }
 
-const displayFavs = ref(false);
-
 onMounted(() => {
-    getPage(route('photos.gallery') + '?page=1');
+    getPage(route('photos.gallery'));
 })
 
 function showOnlyFavs(showFavs) {
@@ -61,10 +60,10 @@ function showOnlyFavs(showFavs) {
                 />
                 <div
                     class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <FavoriteButton :isFavorited="false" :count="photo.fav_count" :photoId="photo.id"/>
+                    <FavoriteButton :isFavorited="photo.is_fav" :count="photo.fav_count" :photoId="photo.id"/>
                 </div>
             </div>
         </div>
-        <Pagination :pageMeta="pageMeta" :onPageChange="getPage"/>
+        <Pagination :pageMeta="pageMeta" :onPageChange="getPage" :displayFavs="displayFavs"/>
     </DefaultLayout>
 </template>

@@ -17,6 +17,11 @@ class PhotoResource extends JsonResource
             'album'      => new AlbumResource($this->album),
             'fav_count'  => $this->fav_count,
             'created_at' => $this->created_at,
+            'is_fav'     => $request->user()
+                ? $this->favoritesByUsers()
+                    ->where('user_id', $request->user()->id)
+                    ->exists()
+                : false,
         ];
     }
 }

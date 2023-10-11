@@ -32,7 +32,7 @@ class PhotosController extends Controller
         PhotoGalleryService $service
     ) {
         $photoId = Uuid::fromString($photoId);
-        $service->toggleFavorites($photoId, 1);
+        $service->toggleFavorites($photoId, $request->user()->id);
 
         return response(
             new PhotoResource($service->findPhoto($photoId))

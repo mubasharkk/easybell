@@ -25,7 +25,7 @@ function toggleFavorite() {
     fetch(route('photos.favorite', props.photoId))
         .then(response => response.json())
         .then(response => {
-            markFav.value = true;
+            markFav.value = response.is_fav;
             favCount.value = response.fav_count;
         });
 }
